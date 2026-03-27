@@ -1,0 +1,16 @@
+path_follower:
+  ros__parameters:
+    agent_num: 3
+    global_plan_topic: "/mapf/global_plan"
+    global_frame_id: "map"
+
+    cancel_previous_goal_on_new_plan: true
+    executor_rate: 5.0
+
+    controller_id: "FollowPath"
+    goal_checker_id: "general_goal_checker"
+    progress_checker_id: "progress_checker"
+
+    agent_name.agent_0: "carter1"
+    agent_name.agent_1: "carter2"
+    agent_name.agent_2: "carter3"

@@ -1,0 +1,19 @@
+carter2:
+  amcl:
+    ros__parameters:
+      use_sim_time: true
+      global_frame_id: map
+      odom_frame_id: carter2/odom
+      base_frame_id: carter2/chassis_link/base_link
+      scan_topic: /carter2/front_2d_lidar/scan
+      tf_broadcast: true
+      transform_tolerance: 0.5
+      min_particles: 500
+      max_particles: 2000
+      laser_model_type: "likelihood_field"
+      max_beams: 60
+      update_min_d: 0.2
+      update_min_a: 0.2
+      robot_model_type: "nav2_amcl::DifferentialMotionModel"
+
+      

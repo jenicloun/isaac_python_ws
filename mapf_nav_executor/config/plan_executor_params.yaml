@@ -1,0 +1,17 @@
+plan_executor:
+  ros__parameters:
+    agent_num: 3
+    global_frame_id: map
+    xy_goal_tolerance: 0.25
+    yaw_goal_tolerance: 0.35
+    step_wait_timeout: 20.0
+
+    agent_name:
+      agent_0: carter1
+      agent_1: carter2
+      agent_2: carter3
+
+    base_frame_id:
+      agent_0: carter1/chassis_link/base_link
+      agent_1: carter2/chassis_link/base_link
+      agent_2: carter3/chassis_link/base_link

@@ -8,6 +8,7 @@ find_package(moveit REQUIRED)
 install(DIRECTORY
   rviz2
   launch
+  config
   DESTINATION share/${PROJECT_NAME})
 
 # Install Python executables

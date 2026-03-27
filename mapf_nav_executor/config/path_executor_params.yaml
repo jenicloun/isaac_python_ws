@@ -1,0 +1,21 @@
+path_executor:
+  ros__parameters:
+    agent_num: 3
+    global_plan_topic: "/mapf/global_plan"
+    global_frame_id: "map"
+
+    xy_goal_tolerance: 0.15
+    yaw_goal_tolerance: 0.2
+    intermediate_goal_tolerance: 0.25
+
+    cancel_previous_goal_on_new_plan: true
+    pose_update_rate: 10.0
+    executor_rate: 0.1
+
+    agent_name.agent_0: "carter1"
+    agent_name.agent_1: "carter2"
+    agent_name.agent_2: "carter3"
+
+    base_frame_id.agent_0: "carter1/chassis_link/base_link"
+    base_frame_id.agent_1: "carter2/chassis_link/base_link"
+    base_frame_id.agent_2: "carter3/chassis_link/base_link"

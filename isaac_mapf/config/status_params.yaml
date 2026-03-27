@@ -1,0 +1,4 @@
+/status_node:
+  ros__parameters:
+    robot_name: rb_1
+    period: 0.5
