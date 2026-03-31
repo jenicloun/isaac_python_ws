@@ -20,6 +20,15 @@ find_package(ament_cmake REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
+################
+find_package(rclpy REQUIRED)
+
+install(PROGRAMS
+  joint_name_remap_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+################
+
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/SampleMsg.msg"
   DEPENDENCIES std_msgs

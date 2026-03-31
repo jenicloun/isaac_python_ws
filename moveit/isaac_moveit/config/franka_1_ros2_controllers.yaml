@@ -22,14 +22,14 @@
         - position
         - velocity
       joints:
-        - panda_joint1
-        - panda_joint2
-        - panda_joint3
-        - panda_joint4
-        - panda_joint5
-        - panda_joint6
-        - panda_joint7
+        - franka_1_panda_joint1
+        - franka_1_panda_joint2
+        - franka_1_panda_joint3
+        - franka_1_panda_joint4
+        - franka_1_panda_joint5
+        - franka_1_panda_joint6
+        - franka_1_panda_joint7
 
   panda_hand_controller:
     ros__parameters:
-      joint: panda_finger_joint1
+      joint: franka_1_panda_finger_joint1

@@ -9,6 +9,7 @@ install(DIRECTORY
   rviz2
   launch
   config
+  urdf
   DESTINATION share/${PROJECT_NAME})
 
 # Install Python executables
