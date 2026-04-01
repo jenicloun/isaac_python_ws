@@ -20,6 +20,7 @@ setup(
             'launch/mapf_goal_demo.launch.py',
             'launch/mapf_multi_nav_demo_0318.launch.py',
             'launch/mapf_multi_nav_demo_0319.launch.py',
+            'launch/total_navigation.launch.py',
         ]),
         ('share/' + package_name + '/config', [
             'config/mapf_params.yaml',
@@ -29,6 +30,7 @@ setup(
             'config/carter_warehouse_navigation.png',
             'config/carter_warehouse_navigation_005.yaml',
             'config/carter_warehouse_navigation_005.png',
+            'config/multi_goals.yaml'
         ]),
         ('share/' + package_name + '/launch', [
             'launch/nav2/carter1_nav2_bringup.launch.py',
