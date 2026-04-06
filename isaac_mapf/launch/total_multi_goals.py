@@ -4,8 +4,8 @@ from rclpy.node import Node
 from nav2_msgs.action import NavigateToPose
 import yaml
 import os
-from ament_index_python.packages import get_package_share_directory
-
+import math
+import time
 
 class MultiGoalSender(Node):
     def __init__(self, yaml_file):
@@ -32,6 +32,16 @@ class MultiGoalSender(Node):
         goal_msg.pose.pose.position.x = float(coords['x'])
         goal_msg.pose.pose.position.y = float(coords['y'])
         goal_msg.pose.pose.orientation.w = 1.0 # 간단하게 정면 응시
+        # --- 추가 및 수정 부분 ---
+        # 1. Degree를 Radian으로 변환
+        yaw_deg = float(coords.get('yaw', 0.0))
+        yaw_rad = math.radians(yaw_deg)
+        
+        # 2. Yaw(Z축 회전)를 Quaternion으로 변환하는 공식
+        # Roll, Pitch가 0일 때: x=0, y=0, z=sin(yaw/2), w=cos(yaw/2)
+        goal_msg.pose.pose.orientation.z = math.sin(yaw_rad / 2.0)
+        goal_msg.pose.pose.orientation.w = math.cos(yaw_rad / 2.0)
+        # -----------------------
         
         self.get_logger().info(f'Sending goal to {name}: x={coords["x"]}, y={coords["y"]}')
         client.send_goal_async(goal_msg)
@@ -48,7 +58,10 @@ def main():
     node = MultiGoalSender(yaml_path)
     # 비동기로 목표만 쏘고 종료하려면 바로 shutdown, 
     # 결과를 기다리려면 spin을 사용하지만 여기서는 전송만 하고 종료합니다.
-    rclpy.spin_once(node, timeout_sec=2.0)
+    # rclpy.spin_once(node, timeout_sec=2.0)
+    start_time = time.time()
+    while rclpy.ok() and (time.time() - start_time) < 10.0:
+        rclpy.spin_once(node, timeout_sec=0.1)
     node.destroy_node()
     rclpy.shutdown()
 
