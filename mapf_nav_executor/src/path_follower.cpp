@@ -312,10 +312,11 @@ private:
                 RCLCPP_INFO(this->get_logger(), "Agent %d FollowPath succeeded", i);
                 break;
               case rclcpp_action::ResultCode::ABORTED:
-                RCLCPP_WARN(
-                  this->get_logger(),
-                  "Agent %d FollowPath aborted: error_code=%u msg=%s", i);
+                // RCLCPP_WARN(
+                //   this->get_logger(),
+                //   "Agent %d FollowPath aborted: error_code=%u msg=%s", i);
                 //  i, result.result->error_code, result.result->error_msg.c_str()); //jazzy (O) humble (X)
+                RCLCPP_ERROR(this->get_logger(), "Agent %d FollowPath aborted", i);
                 break;
               case rclcpp_action::ResultCode::CANCELED:
                 RCLCPP_WARN(this->get_logger(), "Agent %d FollowPath canceled", i);

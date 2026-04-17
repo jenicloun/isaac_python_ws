@@ -3,7 +3,7 @@ carter1:
     ros__parameters:
       use_sim_time: true
 
-      global_frame_id: map
+      global_frame_id: World
       odom_frame_id: carter1/odom
       base_frame_id: carter1/chassis_link/base_link
       scan_topic: /carter1/front_2d_lidar/scan
