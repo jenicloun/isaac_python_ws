@@ -1,12 +1,11 @@
 import math
 from launch import LaunchDescription
-from launch.actions import (DeclareLaunchArgument, GroupAction, TimerAction, 
-                            ExecuteProcess, LogInfo, SetEnvironmentVariable)
+from launch.actions import (GroupAction,  ExecuteProcess,  SetEnvironmentVariable)
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node, PushRosNamespace
 from launch_ros.substitutions import FindPackageShare
 
-# --- 헬퍼 함수 정의 ---
+
 
 def pub_initialpose(topic: str, x: float, y: float, yaw: float = 0.0):
     qz = math.sin(yaw * 0.5)
@@ -21,7 +20,7 @@ def pub_goal(topic: str, x: float, y: float, yaw: float = 0.0):
     return ExecuteProcess(cmd=['ros2', 'topic', 'pub', '--once', topic, 'geometry_msgs/msg/PoseStamped', msg], output='screen')
 
 def make_nav2_group(namespace: str, params_file, map_file, use_sim_time, autostart):
-    # 각 노드별로 정확한 패키지 이름을 매핑합니다.
+
     nav2_nodes = [
         ("nav2_map_server", "map_server"),
         ("nav2_controller", "controller_server"),
@@ -33,7 +32,6 @@ def make_nav2_group(namespace: str, params_file, map_file, use_sim_time, autosta
     return GroupAction([
         PushRosNamespace(namespace),
 
-        # 노드 생성 루프
         *[Node(
             package=pkg,
             executable=exe,
@@ -115,7 +113,7 @@ def generate_launch_description():
             Node(
                 package="nav2_map_server",
                 executable="map_server",
-                name="mapf_map_server",  # 1. 이름을 'mapf_map_server'로 수정
+                name="mapf_map_server",  
                 output="screen",
                 parameters=[
                     mapf_params,
@@ -125,7 +123,7 @@ def generate_launch_description():
             Node(
                 package="mapf_base",
                 executable="mapf_base_node",
-                name="mapf_base_node",   # 2. 이 이름과
+                name="mapf_base_node",  
                 output="screen",
                 parameters=[
                     costmap_params,
@@ -141,7 +139,6 @@ def generate_launch_description():
                 parameters=[
                     {"use_sim_time": use_sim_time},
                     {"autostart": autostart},
-                    # 3. 아래 리스트의 이름들을 위 name들과 정확히 일치시킴
                     {"node_names": ["mapf_map_server", "mapf_base_node"]},
                 ],
             ),
